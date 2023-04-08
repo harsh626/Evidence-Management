@@ -11,7 +11,7 @@ const CaseDetails = () => {
         fileInput.onchange = () => {
             const selectedFile = fileInput.files[0];
             const reader = new FileReader();
-            const base64 = "";
+            let base64 = "";
             reader.onloadend = () => {
                 base64 += reader.result;
                 // Logs data:<type>;base64,wL2dvYWwgbW9yZ...
