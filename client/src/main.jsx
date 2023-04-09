@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import Home from './components/Home';
@@ -9,6 +9,67 @@ import AddEvidence from './components/AddEvidence';
 import ErrorPage from './components/ErrorPage';
 import './index.css';
 
+const evidences = [
+  {
+    id: 1,
+    name: '',
+    custodian: '',
+    timestamp: '',
+    hash: '',
+    verified: false
+  },
+  {
+    id: 1,
+    name: '',
+    custodian: '',
+    timestamp: '',
+    hash: '',
+    verified: false
+  },
+  {
+    id: 1,
+    name: '',
+    custodian: '',
+    timestamp: '',
+    hash: '',
+    verified: false
+  },
+  {
+    id: 1,
+    name: '',
+    custodian: '',
+    timestamp: '',
+    hash: '',
+    verified: false
+  },
+  {
+    id: 1,
+    name: '',
+    custodian: '',
+    timestamp: '',
+    hash: '',
+    verified: false
+  },
+  {
+    id: 1,
+    name: '',
+    custodian: '',
+    timestamp: '',
+    hash: '',
+    verified: false
+  }
+];
+
+const cases = [
+  {
+    id: 1,
+    name: '',
+    filer: '',
+    evidences: [],
+    status: '',
+  }
+]
+
 
 const router = createBrowserRouter([
   {
@@ -18,17 +79,12 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard  />,
+    element: <Dashboard cases={cases} evidences={evidences}  />,
     errorElement: <ErrorPage />,
   },
   {
     path: "casedetails/:caseid",
-    element: <CaseDetails  />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "addevidence",
-    element: <AddEvidence  />,
+    element: <CaseDetails cases={cases} evidences={evidences} />,
     errorElement: <ErrorPage />,
   },
 ]);
