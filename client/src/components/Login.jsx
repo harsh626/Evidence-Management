@@ -50,8 +50,6 @@ const Login = () => {
 
     const login = async () => {
 
-        alert(password)
-
         try {
             if ( username.length==0 || password.length==0 ) {
                 alert('Please enter email and password')

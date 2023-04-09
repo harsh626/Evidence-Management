@@ -10,6 +10,7 @@ async function main() {
   const Evi = await hre.ethers.getContractFactory("EvidenceManagement");
   const evi = await Evi.deploy();
 
+  await evi.assignInvestigatorRole("0xE7aD2c7D31CF2da36c3d05A3756CD8238EF677fe");
   // await evi.deployed();
 }
 

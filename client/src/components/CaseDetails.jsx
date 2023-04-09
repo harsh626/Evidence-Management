@@ -2,13 +2,14 @@ import { React, useState } from 'react';
 import { AiOutlineMenuFold } from 'react-icons/ai';
 import './tracking.css';
 import AES from 'crypto-js/aes';
-import { ethers } from 'ethers';
+import { ethers } from "ethers";
 
 import { contractABI, contractAddress } from '../../utils/constants';
 
 const { ethereum } = window;
 
 const getEthereumContract = () => {
+    console.log(ethers);
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const evidenceContract = new ethers.Contract(contractAddress, contractABI, signer);
@@ -22,6 +23,23 @@ const CaseDetails = ({ evidences, cases }) => {
     const [base64, setBase64] = useState('');
     const [custodian, setCustodian] = useState('');
     const [evidenceName, setEvidencename] = useState('');
+
+    const [currentAccount , setCurrentAccount] = useState('');
+
+    const connectWallet = async () => {
+    try {
+        if(!ethereum) return alert("Please Install MetaMask");
+
+        const accounts = await ethereum.request({ method : 'eth_requestAccounts'});
+
+        setCurrentAccount(accounts[0]);
+    } catch (error) {
+        console.log(error);
+        
+        throw new Error("No Ethereum Object");
+    }
+
+}
 
     const open_form = () => {
         document.getElementById('form').classList.remove('hidden');
@@ -56,7 +74,6 @@ const CaseDetails = ({ evidences, cases }) => {
     }
 
     const submit = () => {
-        const hashed = AES.encrypt(base64, 'secret key').toString();
         const data = {
             id: 2,
             name: evidenceName,
@@ -65,8 +82,16 @@ const CaseDetails = ({ evidences, cases }) => {
             description: "This is the description of the evidence",
             hash: hashed
         }
-        const evidenceContract = getEthereumContract()
-        evidenceContract.submitEvidence(2, evidenceName, "This is the description of the evidence", hashed)
+        const evidenceContract = getEthereumContract();
+        
+        function base64ToBytes32(base64) {
+            const bytes = ethers.utils.arrayify(atob(base64));
+            const padded = ethers.utils.hexZeroPad(ethers.utils.hexlify(bytes), 32);
+            return padded;
+        }
+        const hashed =base64ToBytes32(base64);
+
+        evidenceContract.submitEvidence(2, evidenceName, "This is the description of the evidence", "0x54a9be6d94a6b0e082a0da800c8fcd064e4870a938d76e4b4f4a712f4a81060f");
 
 
         console.log(data);

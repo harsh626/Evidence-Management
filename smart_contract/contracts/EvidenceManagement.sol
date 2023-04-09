@@ -60,19 +60,19 @@ contract EvidenceManagement is AccessControl {
     //// Functions
 
     function assignInvestigatorRole(address addr) public onlyRole(INVESTIGATOR_ROLE) {
-        grantRole(INVESTIGATOR_ROLE, addr);
+        _setupRole(INVESTIGATOR_ROLE, addr);
     }
 
     function assignExpertRole(address addr) public onlyRole(EXPERT_ROLE) {
-        grantRole(EXPERT_ROLE, addr);
+        _setupRole(EXPERT_ROLE, addr);
     }
 
     function assignCourtRole(address addr) public onlyRole(COURT_ROLE) {
-        grantRole(COURT_ROLE, addr);
+        _setupRole(COURT_ROLE, addr);
     }
 
     function assignLawyerRole(address addr) public onlyRole(LAWYER_ROLE) {
-        grantRole(LAWYER_ROLE, addr);
+        _setupRole(LAWYER_ROLE, addr);
     }
 
 
