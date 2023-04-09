@@ -2,9 +2,11 @@ import { React, useState } from 'react';
 import './login.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import mongoose from 'mongoose';
 
 const Login = () => {
 
+    console.log(mongoose);
     const users = [
         {
             'username': 'inspector1',

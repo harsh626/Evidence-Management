@@ -3,7 +3,7 @@ import { AiOutlineMenuFold } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 
-import { contractABI, contractAddress } from '../../utils/constants';
+// import { contractABI, contractAddress } from '../../utils/constants';
 
 const { ethereum } = window;
 
@@ -15,11 +15,7 @@ const getEthereumContract = () => {
     return evidenceContract;
 }
 
-const Dashboard = () => {
-
-    
-
-    const digits = [1, 2, 3, 4];
+const Dashboard = ({ evidences, cases }) => {
 
     const [currentAccount , setCurrentAccount] = useState('');
 
@@ -69,18 +65,18 @@ const Dashboard = () => {
                     <p></p>
                 </div>
                 {
-                    digits.map((d)=>{
+                    cases.map((c)=>{
                         return (
-                                <div className='h-[5rem] border-rounded bg-[#efefef] mt-10 p-4'>
+                                <div className='h-[7rem] border-rounded bg-[#efefef] mt-10 p-4'>
                                     <div className='flex justify-between'>
-                                        <Link to='/casedetails/1'>
-                                            <p>Case ID</p> 
+                                        <Link to={`/casedetails/${c.id}`}>
+                                            <p>{c.id}</p> 
                                         </Link>
-                                        <p>status</p>
+                                        <p>{c.status}</p>
                                     </div>
                                     
                                     <div>
-                                    <p>Case Name</p>
+                                    <p>{c.name}</p>
                                     </div>                    
                                 </div>
                             

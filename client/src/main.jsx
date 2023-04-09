@@ -5,11 +5,10 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import CaseDetails from './components/CaseDetails';
-import AddEvidence from './components/AddEvidence';
 import ErrorPage from './components/ErrorPage';
 import './index.css';
 
-const evidences = [
+const [evidences, setEvidences] = useState([
   {
     id: 1,
     name: '',
@@ -19,7 +18,7 @@ const evidences = [
     verified: false
   },
   {
-    id: 1,
+    id: 2,
     name: '',
     custodian: '',
     timestamp: '',
@@ -27,7 +26,7 @@ const evidences = [
     verified: false
   },
   {
-    id: 1,
+    id: 3,
     name: '',
     custodian: '',
     timestamp: '',
@@ -58,9 +57,9 @@ const evidences = [
     hash: '',
     verified: false
   }
-];
+])
 
-const cases = [
+const [cases, setCases] = useState([
   {
     id: 1,
     name: '',
@@ -68,10 +67,11 @@ const cases = [
     evidences: [],
     status: '',
   }
-]
+])
 
 
 const router = createBrowserRouter([
+
   {
     path: "/",
     element: <Login  />,
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
   },
   {
     path: "casedetails/:caseid",
-    element: <CaseDetails cases={cases} evidences={evidences} />,
+    element: <CaseDetails cases={cases} evidences={evidences} setEvidences={setEvidences} />,
     errorElement: <ErrorPage />,
   },
 ]);
