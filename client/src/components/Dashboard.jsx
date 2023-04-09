@@ -3,7 +3,7 @@ import { AiOutlineMenuFold } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 
-// import { contractABI, contractAddress } from '../../utils/constants';
+import { contractABI, contractAddress } from '../../utils/constants';
 
 const { ethereum } = window;
 
